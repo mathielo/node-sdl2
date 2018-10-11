@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 var SDL_rwops_lib = require('./SDL_rwops')
@@ -63,7 +64,7 @@ var SDL_RWops_ptr = exports.SDL_RWops_ptr = ref.refType(SDL_RWops)
 var Uint8_ptr_ptr = exports.Uint8_ptr_ptr = ref.refType(Uint8_ptr)
 var Uint32_ptr = exports.Uint32_ptr = ref.refType(Uint32)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_GetNumAudioDrivers: [ int32, [ ] ],
 	SDL_GetAudioDriver: [ string, [ int32, ] ],
 	SDL_AudioInit: [ int32, [ string, ] ],

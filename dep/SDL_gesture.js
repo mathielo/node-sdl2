@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_touch_lib = require('./SDL_touch')
 var SDL_rwops_lib = require('./SDL_rwops')
@@ -16,7 +17,7 @@ var SDL_TouchID = SDL_touch_lib.SDL_TouchID
 var SDL_RWops = SDL_rwops_lib.SDL_RWops
 var SDL_RWops_ptr = exports.SDL_RWops_ptr = ref.refType(SDL_RWops)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_RecordGesture: [ int32, [ SDL_TouchID, ] ],
 	SDL_SaveAllDollarTemplates: [ int32, [ SDL_RWops_ptr, ] ],
 	SDL_SaveDollarTemplate: [ int32, [ SDL_GestureID, SDL_RWops_ptr, ] ],

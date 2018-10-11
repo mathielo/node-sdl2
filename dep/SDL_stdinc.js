@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var SDL_bool = exports.SDL_bool = {
@@ -71,7 +72,7 @@ var _SDL_iconv_t_ptr = exports._SDL_iconv_t_ptr = ref.refType(_SDL_iconv_t)
 var SDL_iconv_t = exports.SDL_iconv_t = _SDL_iconv_t_ptr
 var size_t_ptr = exports.size_t_ptr = ref.refType(size_t)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_malloc: [ voit_ptr, [ size_t, ] ],
 	SDL_calloc: [ voit_ptr, [ size_t, size_t, ] ],
 	SDL_realloc: [ voit_ptr, [ voit_ptr, size_t, ] ],

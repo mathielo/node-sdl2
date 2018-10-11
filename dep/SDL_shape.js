@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_video_lib = require('./SDL_video')
 var SDL_stdinc_lib = require('./SDL_stdinc')
@@ -42,7 +43,7 @@ var SDL_Surface = SDL_surface_lib.SDL_Surface
 var SDL_Surface_ptr = exports.SDL_Surface_ptr = ref.refType(SDL_Surface)
 var SDL_WindowShapeMode_ptr = exports.SDL_WindowShapeMode_ptr = ref.refType(SDL_WindowShapeMode)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_CreateShapedWindow: [ SDL_Window_ptr, [ string, uint32, uint32, uint32, uint32, Uint32, ] ],
 	SDL_IsShapedWindow: [ uint32, [ SDL_Window_ptr, ] ],
 	SDL_SetWindowShape: [ int32, [ SDL_Window_ptr, SDL_Surface_ptr, SDL_WindowShapeMode_ptr, ] ],

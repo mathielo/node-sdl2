@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var SDL_AssertState = exports.SDL_AssertState = {
@@ -38,7 +39,7 @@ var SDL_AssertData_ptr = exports.SDL_AssertData_ptr = ref.refType(SDL_AssertData
 var SDL_AssertionHandler = exports.SDL_AssertionHandler = FFI.Function( uint32, [ SDL_AssertData_ptr, voit_ptr, ] )
 var voit_ptr_ptr = exports.voit_ptr_ptr = ref.refType(voit_ptr)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_ReportAssertion: [ uint32, [ SDL_AssertData_ptr, string, string, int32, ] ],
 	SDL_SetAssertionHandler: [ voit, [ SDL_AssertionHandler, voit_ptr, ] ],
 	SDL_GetDefaultAssertionHandler: [ SDL_AssertionHandler, [ ] ],

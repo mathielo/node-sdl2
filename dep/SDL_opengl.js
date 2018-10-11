@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 
@@ -103,7 +104,7 @@ var GLeglImageOES = exports.GLeglImageOES = voit_ptr
 var PFNGLEGLIMAGETARGETTEXTURE2DOESPROC = exports.PFNGLEGLIMAGETARGETTEXTURE2DOESPROC = FFI.Function( voit, [ uint32, voit_ptr, ] )
 var PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC = exports.PFNGLEGLIMAGETARGETRENDERBUFFERSTORAGEOESPROC = FFI.Function( voit, [ uint32, voit_ptr, ] )
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	glClearIndex: [ voit, [ GLfloat, ] ],
 	glClearColor: [ voit, [ GLclampf, GLclampf, GLclampf, GLclampf, ] ],
 	glClear: [ voit, [ GLbitfield, ] ],

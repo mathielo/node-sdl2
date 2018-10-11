@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 var SDL_keyboard_lib = require('./SDL_keyboard')
@@ -331,7 +332,7 @@ var SDL_EventFilter = exports.SDL_EventFilter = FFI.Function( int32, [ voit_ptr,
 var SDL_EventFilter_ptr = exports.SDL_EventFilter_ptr = ref.refType(SDL_EventFilter)
 var voit_ptr_ptr = exports.voit_ptr_ptr = ref.refType(voit_ptr)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_PumpEvents: [ voit, [ ] ],
 	SDL_PeepEvents: [ int32, [ SDL_Event_ptr, int32, uint32, Uint32, Uint32, ] ],
 	SDL_HasEvent: [ uint32, [ Uint32, ] ],

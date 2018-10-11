@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_keycode_lib = require('./SDL_keycode')
 var SDL_stdinc_lib = require('./SDL_stdinc')
@@ -294,7 +295,7 @@ var string = exports.string = ref.types.CString
 var SDL_Rect = SDL_rect_lib.SDL_Rect
 var SDL_Rect_ptr = exports.SDL_Rect_ptr = ref.refType(SDL_Rect)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_GetKeyboardFocus: [ SDL_Window_ptr, [ ] ],
 	SDL_GetKeyboardState: [ Uint8_ptr, [ int32_ptr, ] ],
 	SDL_GetModState: [ uint32, [ ] ],

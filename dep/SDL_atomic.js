@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var SDL_bool = exports.SDL_bool = {
@@ -23,7 +24,7 @@ var SDL_atomic_t_ptr = exports.SDL_atomic_t_ptr = ref.refType(SDL_atomic_t)
 var voit_ptr = exports.voit_ptr = ref.refType(voit)
 var voit_ptr_ptr = exports.voit_ptr_ptr = ref.refType(voit_ptr)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_AtomicTryLock: [ uint32, [ SDL_SpinLock_ptr, ] ],
 	SDL_AtomicLock: [ voit, [ SDL_SpinLock_ptr, ] ],
 	SDL_AtomicUnlock: [ voit, [ SDL_SpinLock_ptr, ] ],

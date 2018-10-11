@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var SDL_bool = exports.SDL_bool = {
@@ -27,7 +28,7 @@ var SDL_Rect_ptr = exports.SDL_Rect_ptr = ref.refType(SDL_Rect)
 var SDL_Point_ptr = exports.SDL_Point_ptr = ref.refType(SDL_Point)
 var int32_ptr = exports.int32_ptr = ref.refType(int32)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_HasIntersection: [ uint32, [ SDL_Rect_ptr, SDL_Rect_ptr, ] ],
 	SDL_IntersectRect: [ uint32, [ SDL_Rect_ptr, SDL_Rect_ptr, SDL_Rect_ptr, ] ],
 	SDL_UnionRect: [ voit, [ SDL_Rect_ptr, SDL_Rect_ptr, SDL_Rect_ptr, ] ],

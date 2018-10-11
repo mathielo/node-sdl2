@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var c_SDL_log_h_Ea = exports.c_SDL_log_h_Ea = {
@@ -63,7 +64,7 @@ var SDL_LogOutputFunction = exports.SDL_LogOutputFunction = FFI.Function( voit, 
 var SDL_LogOutputFunction_ptr = exports.SDL_LogOutputFunction_ptr = ref.refType(SDL_LogOutputFunction)
 var voit_ptr_ptr = exports.voit_ptr_ptr = ref.refType(voit_ptr)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_LogSetAllPriority: [ voit, [ uint32, ] ],
 	SDL_LogSetPriority: [ voit, [ int32, uint32, ] ],
 	SDL_LogGetPriority: [ uint32, [ int32, ] ],

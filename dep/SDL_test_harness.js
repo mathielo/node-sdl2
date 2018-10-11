@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 
@@ -30,6 +31,6 @@ var SDLTest_TestSuiteReference = exports.SDLTest_TestSuiteReference = Struct({
 var SDLTest_TestSuiteReference_ptr = exports.SDLTest_TestSuiteReference_ptr = ref.refType(SDLTest_TestSuiteReference)
 var c__F_SDLTest_RunSuites_arr = ArrayType(SDLTest_TestSuiteReference_ptr, 0)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDLTest_RunSuites: [ int32, [ c__F_SDLTest_RunSuites_arr, string, int32, string, int32, ] ],
 }, exports)

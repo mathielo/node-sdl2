@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 
@@ -12,7 +13,7 @@ var float = exports.float = ref.types.float
 var double = exports.double = ref.types.double
 var string = exports.string = ref.types.CString
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDLTest_FuzzerInit: [ voit, [ int32, ] ],
 	SDLTest_RandomUint8: [ int32, [ ] ],
 	SDLTest_RandomSint8: [ int32, [ ] ],

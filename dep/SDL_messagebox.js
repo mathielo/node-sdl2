@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 var SDL_video_lib = require('./SDL_video')
@@ -65,7 +66,7 @@ var SDL_MessageBoxData = exports.SDL_MessageBoxData = c__SA_SDL_MessageBoxData
 var SDL_MessageBoxData_ptr = exports.SDL_MessageBoxData_ptr = ref.refType(SDL_MessageBoxData)
 var int32_ptr = exports.int32_ptr = ref.refType(int32)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_ShowMessageBox: [ int32, [ SDL_MessageBoxData_ptr, int32_ptr, ] ],
 	SDL_ShowSimpleMessageBox: [ int32, [ Uint32, string, string, SDL_Window_ptr, ] ],
 }, exports)

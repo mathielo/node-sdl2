@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var SDL_ThreadPriority = exports.SDL_ThreadPriority = {
@@ -24,7 +25,7 @@ var SDL_Thread_ptr = exports.SDL_Thread_ptr = ref.refType(SDL_Thread)
 var string = exports.string = ref.types.CString
 var int32_ptr = exports.int32_ptr = ref.refType(int32)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_CreateThread: [ SDL_Thread_ptr, [ SDL_ThreadFunction, string, voit_ptr, ] ],
 	SDL_GetThreadName: [ string, [ SDL_Thread_ptr, ] ],
 	SDL_ThreadID: [ SDL_threadID, [ ] ],

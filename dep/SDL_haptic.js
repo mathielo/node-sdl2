@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 var SDL_joystick_lib = require('./SDL_joystick')
@@ -125,7 +126,7 @@ var uint32 = exports.uint32 = ref.types.uint32
 var SDL_HapticEffect_ptr = exports.SDL_HapticEffect_ptr = ref.refType(SDL_HapticEffect)
 var float = exports.float = ref.types.float
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_NumHaptics: [ int32, [ ] ],
 	SDL_HapticName: [ string, [ int32, ] ],
 	SDL_HapticOpen: [ SDL_Haptic_ptr, [ int32, ] ],

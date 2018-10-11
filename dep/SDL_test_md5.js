@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 
@@ -25,7 +26,7 @@ var SDLTest_Md5Context_ptr = exports.SDLTest_Md5Context_ptr = ref.refType(SDLTes
 var uchar_ptr = exports.uchar_ptr = ref.refType(uchar)
 var uint32 = exports.uint32 = ref.types.uint32
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDLTest_Md5Init: [ voit, [ SDLTest_Md5Context_ptr, ] ],
 	SDLTest_Md5Update: [ voit, [ SDLTest_Md5Context_ptr, uchar_ptr, uint32, ] ],
 	SDLTest_Md5Final: [ voit, [ SDLTest_Md5Context_ptr, ] ],

@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 
@@ -11,7 +12,7 @@ var voit = exports.voit = ref.types.void
 var int32 = exports.int32 = ref.types.int32
 var Uint32 = SDL_stdinc_lib.Uint32
 
-FFI.Library(libsdl.getLibPaht(), {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_Init: [ int32, [ Uint32, ] ],
 	SDL_InitSubSystem: [ int32, [ Uint32, ] ],
 	SDL_QuitSubSystem: [ voit, [ Uint32, ] ],

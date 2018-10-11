@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 
@@ -47,7 +48,7 @@ var Uint64 = SDL_stdinc_lib.Uint64
 var ulong = exports.ulong = ref.types.ulong
 var size_t = exports.size_t = ulong
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_RWFromFile: [ SDL_RWops_ptr, [ string, string, ] ],
 	SDL_RWFromFP: [ SDL_RWops_ptr, [ voit_ptr, uint32, ] ],
 	SDL_RWFromMem: [ SDL_RWops_ptr, [ voit_ptr, int32, ] ],

@@ -3,7 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
-
+v
 
 var SDL_Scancode = exports.SDL_Scancode = {
 	SDL_SCANCODE_UNKNOWN: 0,
@@ -253,5 +253,5 @@ var SDL_Scancode = exports.SDL_Scancode = {
 var voit = exports.voit = ref.types.void
 var uint32 = exports.uint32 = ref.types.uint32
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 }, exports)

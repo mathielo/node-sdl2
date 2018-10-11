@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var SDL_HintPriority = exports.SDL_HintPriority = {
@@ -21,7 +22,7 @@ var string = exports.string = ref.types.CString
 var voit_ptr = exports.voit_ptr = ref.refType(voit)
 var SDL_HintCallback = exports.SDL_HintCallback = FFI.Function( voit, [ voit_ptr, string, string, string, ] )
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_SetHintWithPriority: [ uint32, [ string, string, uint32, ] ],
 	SDL_SetHint: [ uint32, [ string, string, ] ],
 	SDL_GetHint: [ string, [ string, ] ],

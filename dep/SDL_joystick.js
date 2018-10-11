@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 
@@ -37,7 +38,7 @@ var uint32 = exports.uint32 = ref.types.uint32
 var Sint16 = SDL_stdinc_lib.Sint16
 var int32_ptr = exports.int32_ptr = ref.refType(int32)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_NumJoysticks: [ int32, [ ] ],
 	SDL_JoystickNameForIndex: [ string, [ int32, ] ],
 	SDL_JoystickOpen: [ SDL_Joystick_ptr, [ int32, ] ],

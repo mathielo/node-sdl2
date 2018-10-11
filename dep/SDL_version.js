@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 
@@ -18,7 +19,7 @@ var SDL_version_ptr = exports.SDL_version_ptr = ref.refType(SDL_version)
 var string = exports.string = ref.types.CString
 var int32 = exports.int32 = ref.types.int32
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_GetVersion: [ voit, [ SDL_version_ptr, ] ],
 	SDL_GetRevision: [ string, [ ] ],
 	SDL_GetRevisionNumber: [ int32, [ ] ],

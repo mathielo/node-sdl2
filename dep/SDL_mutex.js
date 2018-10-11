@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 
@@ -18,7 +19,7 @@ var Uint32 = SDL_stdinc_lib.Uint32
 var SDL_cond = exports.SDL_cond = voit
 var SDL_cond_ptr = exports.SDL_cond_ptr = ref.refType(SDL_cond)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_CreateMutex: [ SDL_mutex_ptr, [ ] ],
 	SDL_LockMutex: [ int32, [ SDL_mutex_ptr, ] ],
 	SDL_TryLockMutex: [ int32, [ SDL_mutex_ptr, ] ],

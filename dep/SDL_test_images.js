@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_surface_lib = require('./SDL_surface')
 
@@ -21,7 +22,7 @@ var SDLTest_SurfaceImage_t = exports.SDLTest_SurfaceImage_t = SDLTest_SurfaceIma
 var SDL_Surface = SDL_surface_lib.SDL_Surface
 var SDL_Surface_ptr = exports.SDL_Surface_ptr = ref.refType(SDL_Surface)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDLTest_ImageBlit: [ SDL_Surface_ptr, [ ] ],
 	SDLTest_ImageBlitColor: [ SDL_Surface_ptr, [ ] ],
 	SDLTest_ImageBlitAlpha: [ SDL_Surface_ptr, [ ] ],

@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 
@@ -18,7 +19,7 @@ var c__SA_SDLTest_RandomContext = exports.c__SA_SDLTest_RandomContext = Struct({
 var SDLTest_RandomContext = exports.SDLTest_RandomContext = c__SA_SDLTest_RandomContext
 var SDLTest_RandomContext_ptr = exports.SDLTest_RandomContext_ptr = ref.refType(SDLTest_RandomContext)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDLTest_RandomInit: [ voit, [ SDLTest_RandomContext_ptr, uint32, uint32, ] ],
 	SDLTest_RandomInitTime: [ voit, [ SDLTest_RandomContext_ptr, ] ],
 	SDLTest_Random: [ uint32, [ SDLTest_RandomContext_ptr, ] ],

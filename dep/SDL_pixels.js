@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 
@@ -76,7 +77,7 @@ var float = exports.float = ref.types.float
 var Uint16 = SDL_stdinc_lib.Uint16
 var Uint16_ptr = exports.Uint16_ptr = ref.refType(Uint16)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_GetPixelFormatName: [ string, [ Uint32, ] ],
 	SDL_PixelFormatEnumToMasks: [ uint32, [ Uint32, int32_ptr, Uint32_ptr, Uint32_ptr, Uint32_ptr, Uint32_ptr, ] ],
 	SDL_MasksToPixelFormatEnum: [ Uint32, [ int32, Uint32, Uint32, Uint32, Uint32, ] ],

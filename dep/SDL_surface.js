@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 var SDL_pixels_lib = require('./SDL_pixels')
@@ -56,7 +57,7 @@ var Uint8_ptr = exports.Uint8_ptr = ref.refType(Uint8)
 var uint32 = exports.uint32 = ref.types.uint32
 var uint32_ptr = exports.uint32_ptr = ref.refType(uint32)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_CreateRGBSurface: [ SDL_Surface_ptr, [ Uint32, int32, int32, int32, Uint32, Uint32, Uint32, Uint32, ] ],
 	SDL_CreateRGBSurfaceFrom: [ SDL_Surface_ptr, [ voit_ptr, int32, int32, int32, int32, Uint32, Uint32, Uint32, Uint32, ] ],
 	SDL_FreeSurface: [ voit, [ SDL_Surface_ptr, ] ],

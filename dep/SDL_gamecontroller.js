@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_rwops_lib = require('./SDL_rwops')
 var SDL_joystick_lib = require('./SDL_joystick')
@@ -77,7 +78,7 @@ var SDL_Joystick_ptr = exports.SDL_Joystick_ptr = ref.refType(SDL_Joystick)
 var Sint16 = SDL_stdinc_lib.Sint16
 var Uint8 = SDL_stdinc_lib.Uint8
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_GameControllerAddMappingsFromRW: [ int32, [ SDL_RWops_ptr, int32, ] ],
 	SDL_GameControllerAddMapping: [ int32, [ string, ] ],
 	SDL_GameControllerMappingForGUID: [ string, [ SDL_JoystickGUID, ] ],

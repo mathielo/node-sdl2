@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 var SDL_video_lib = require('./SDL_video')
@@ -81,7 +82,7 @@ var SDL_Point = SDL_rect_lib.SDL_Point
 var SDL_Point_ptr = exports.SDL_Point_ptr = ref.refType(SDL_Point)
 var double = exports.double = ref.types.double
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_GetNumRenderDrivers: [ int32, [ ] ],
 	SDL_GetRenderDriverInfo: [ int32, [ int32, SDL_RendererInfo_ptr, ] ],
 	SDL_CreateWindowAndRenderer: [ int32, [ int32, int32, Uint32, SDL_Window_ptr_ptr, SDL_Renderer_ptr_ptr, ] ],

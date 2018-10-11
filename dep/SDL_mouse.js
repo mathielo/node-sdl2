@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_video_lib = require('./SDL_video')
 var SDL_stdinc_lib = require('./SDL_stdinc')
@@ -46,7 +47,7 @@ var Uint8_ptr = exports.Uint8_ptr = ref.refType(Uint8)
 var SDL_Surface = SDL_surface_lib.SDL_Surface
 var SDL_Surface_ptr = exports.SDL_Surface_ptr = ref.refType(SDL_Surface)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDL_GetMouseFocus: [ SDL_Window_ptr, [ ] ],
 	SDL_GetMouseState: [ Uint32, [ int32_ptr, int32_ptr, ] ],
 	SDL_GetGlobalMouseState: [ Uint32, [ int32_ptr, int32_ptr, ] ],

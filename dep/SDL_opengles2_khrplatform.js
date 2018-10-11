@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 
 var khronos_boolean_enum_t = exports.khronos_boolean_enum_t = {
@@ -39,5 +40,5 @@ var khronos_float_t = exports.khronos_float_t = float
 var khronos_utime_nanoseconds_t = exports.khronos_utime_nanoseconds_t = ulonglong
 var khronos_stime_nanoseconds_t = exports.khronos_stime_nanoseconds_t = longlong
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 }, exports)

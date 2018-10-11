@@ -3,6 +3,7 @@ var ArrayType = require('ref-array')
 var Struct = require('ref-struct')
 var Union = require('ref-union');
 var ref = require('ref')
+var libsdl = require('./libsdl');
 
 var SDL_stdinc_lib = require('./SDL_stdinc')
 var SDL_video_lib = require('./SDL_video')
@@ -91,7 +92,7 @@ var SDL_Event = SDL_events_lib.SDL_Event
 var SDL_Event_ptr = exports.SDL_Event_ptr = ref.refType(SDL_Event)
 var int32_ptr = exports.int32_ptr = ref.refType(int32)
 
-FFI.Library(process.platform == 'win32' ? 'SDL2' : 'libSDL2', {
+FFI.Library(libsdl.getLibPath(), {
 	SDLTest_CommonCreateState: [ SDLTest_CommonState_ptr, [ string_ptr, Uint32, ] ],
 	SDLTest_CommonArg: [ int32, [ SDLTest_CommonState_ptr, int32, ] ],
 	SDLTest_CommonUsage: [ string, [ SDLTest_CommonState_ptr, ] ],
