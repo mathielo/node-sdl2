@@ -20,7 +20,6 @@ var int32 = exports.int32 = ref.types.int32
 var string = exports.string = ref.types.CString
 var uint32 = exports.uint32 = ref.types.uint32
 
-console.log('getLibPath', libsdl.getLibPath());
 FFI.Library(libsdl.getLibPath(), {
 	SDL_SetError: [ int32, [ string, ] ],
 	SDL_GetError: [ string, [ ] ],

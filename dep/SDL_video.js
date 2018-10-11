@@ -145,7 +145,6 @@ var SDL_Point = SDL_rect_lib.SDL_Point
 var SDL_Point_ptr = exports.SDL_Point_ptr = ref.refType(SDL_Point)
 var SDL_HitTest = exports.SDL_HitTest = FFI.Function( uint32, [ SDL_Window_ptr, SDL_Point_ptr, voit_ptr, ] )
 
-console.log('getLibPath', libsdl.getLibPath());
 FFI.Library(libsdl.getLibPath(), {
 	SDL_GetNumVideoDrivers: [ int32, [ ] ],
 	SDL_GetVideoDriver: [ string, [ int32, ] ],
